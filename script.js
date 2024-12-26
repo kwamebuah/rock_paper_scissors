@@ -36,63 +36,33 @@ function getCompChoice() {
 }
 
 function toDisplay(choice) {
-    let output;
-    // switch (choice)
-    // {
-    //     case 1:
-    //         output = 'rock';
-    //         break;
-    //     case 2:
-    //         output = 'paper';
-    //         break;
-    //     case 3:
-    //         output = 'scissors';
-    //         break;
-    // }
-
-
-    output = choice == 1 ? 'rock' :
-    choice == 2 ? 'paper': 'scissors';
+    let output = choice === 1 ? 'rock' :
+    choice === 2 ? 'paper': 'scissors';
     return output;
 }
 
-let user = getUserChoice ();
-console.log(user);
-console.log(`You chose ${toDisplay(user)}`);
-
-
-let computer = getCompChoice();
-console.log(computer);
-console.log(`Computer chose ${toDisplay(computer)}`);
-
-
-
-// let toShow = toDisplay(user);
-// console.log(`You chose ${toShow}`);
-// toShow = toDisplay(computer);
-// console.log(`Computer chose ${toShow}`);
-
-
-let result;
-
-if (user === computer) {
-    result = "tied";
-}
-else if (user === 1 && computer === 3) {
-    result = "won";
-}
-else if (user === 2 && computer === 1) {
-    result = "won";
-}
-else if (user === 3 && computer === 2) {
-    result = "won";
-}
-else {
-    result = "lost";
+function userChoice() {
+    let user = getUserChoice ();
+    console.log(user);
+    console.log(`You chose ${toDisplay(user)}`);
+    return user;
 }
 
-console.log(result);
+function computerChoice() {
+    let computer = getCompChoice();
+    console.log(computer);
+    console.log(`Computer chose ${toDisplay(computer)}`);
+    return computer;
+}
 
+function decision(user, computer) {
+    let result = user === computer ? "It's a tie!" 
+    : (user === 1 && computer === 3) || (user === 2 && computer === 1) || (user === 3 && computer === 2) ? "You won!" 
+    : "Sorry, you lost";
 
-// Score
+    console.log(result);
+}
+
+decision(userChoice(), computerChoice());
+
 
