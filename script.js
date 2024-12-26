@@ -13,6 +13,10 @@
 // if same, it is a tie
 // else compare win conditions
 // else loss
+// play multiple rounds
+// keep track of score
+
+/* ROCK PAPER SCISSORS GAME */
 
 let humanScore = 0;
 let computerScore = 0;
@@ -47,28 +51,22 @@ function toDisplay(choice) {
 
 function userChoice() {
     let user = getUserChoice();
-    // console.log(user);
     console.log(`You chose ${toDisplay(user)}`);
     return user;
 }
 
 function computerChoice() {
     let computer = getCompChoice();
-    // console.log(computer);
     console.log(`Computer chose ${toDisplay(computer)}`);
     return computer;
 }
 
 function decision(user, computer) {
+    // Decide winner and keep track of score
     let winMessage = "You won!";
     let lostMessage = "Sorry, you lost";
     let tieMessage = "It's a tie!";
     let output;
-
-    // let output = user === computer ? tieMessage 
-    // : (user === 1 && computer === 3) || (user === 2 && computer === 1) || (user === 3 && computer === 2) ? winMessage
-    // : lostMessage;
-    // console.log(output);
 
     if (user === computer) {
         output = tieMessage;
@@ -77,7 +75,6 @@ function decision(user, computer) {
         humanScore++;
         output = winMessage;
     }
-
     else {
         computerScore++;
         output = lostMessage;
@@ -85,19 +82,14 @@ function decision(user, computer) {
     console.log(output);
 }
 
-// decision(userChoice(), computerChoice());
-
-// Add playRound function
-
-
-
+// Add playRound and playGame functions
 function playGame() {
     function playRound() {
         decision(userChoice(), computerChoice());
         console.log(`Player: ${humanScore}\nComputer: ${computerScore}`);
     }
-    let gameRounds = 5;
 
+    let gameRounds = 5;
     for (let i = 1; i <= gameRounds; i++) {
         playRound();
     }  
