@@ -17,7 +17,13 @@
 function getUserChoice() {
     console.log("Rock Paper Scissors");
     let userChoice = Number(prompt("Choose:\n1 (rock)\n2 (paper)\n3 (scissors)"));
-    return userChoice;
+    //Insert limitation inside getUserChoice function to ensure only acceptable choices are returned
+    if (userChoice === 1 || userChoice === 2 || userChoice === 3) {
+        return userChoice;
+    }
+    else {
+        console.log('Please choose 1 2 or 3');
+    }
 }
 
 function getCompChoice() {
@@ -48,21 +54,18 @@ function toDisplay(choice) {
 
 let user = getUserChoice ();
 console.log(user);
-console.log(typeof(user));
 
 
 let computer = getCompChoice();
 console.log(computer);
 
-if (user !== 1 || user !== 2 || user !== 3) {
-    console.log('Please choose 1 2 or 3');
-}
-else {
-    let toShow = toDisplay(user);
-    console.log(`You chose ${toShow}`);
-    toShow = toDisplay(computer);
-    console.log(`Computer chose ${toShow}`);
-}
+
+
+// let toShow = toDisplay(user);
+// console.log(`You chose ${toShow}`);
+// toShow = toDisplay(computer);
+// console.log(`Computer chose ${toShow}`);
+
 
 let result;
 
