@@ -14,6 +14,9 @@
 // else compare win conditions
 // else loss
 
+let humanScore = 0;
+let computerScore = 0;
+
 function getUserChoice() {
     console.log("Rock Paper Scissors");
     let userChoice = Number(prompt("Choose:\n1 (rock)\n2 (paper)\n3 (scissors)"));
@@ -36,33 +39,68 @@ function getCompChoice() {
 }
 
 function toDisplay(choice) {
+    //Function to show user what choices were made (improves user experience)
     let output = choice === 1 ? 'rock' :
     choice === 2 ? 'paper': 'scissors';
     return output;
 }
 
 function userChoice() {
-    let user = getUserChoice ();
-    console.log(user);
+    let user = getUserChoice();
+    // console.log(user);
     console.log(`You chose ${toDisplay(user)}`);
     return user;
 }
 
 function computerChoice() {
     let computer = getCompChoice();
-    console.log(computer);
+    // console.log(computer);
     console.log(`Computer chose ${toDisplay(computer)}`);
     return computer;
 }
 
 function decision(user, computer) {
-    let result = user === computer ? "It's a tie!" 
-    : (user === 1 && computer === 3) || (user === 2 && computer === 1) || (user === 3 && computer === 2) ? "You won!" 
-    : "Sorry, you lost";
+    let winMessage = "You won!";
+    let lostMessage = "Sorry, you lost";
+    let tieMessage = "It's a tie!";
+    let output;
 
-    console.log(result);
+    // let output = user === computer ? tieMessage 
+    // : (user === 1 && computer === 3) || (user === 2 && computer === 1) || (user === 3 && computer === 2) ? winMessage
+    // : lostMessage;
+    // console.log(output);
+
+    if (user === computer) {
+        output = tieMessage;
+    }
+    else if ((user === 1 && computer === 3) || (user === 2 && computer === 1) || (user === 3 && computer === 2)) {
+        humanScore++;
+        output = winMessage;
+    }
+
+    else {
+        computerScore++;
+        output = lostMessage;
+    }
+    console.log(output);
 }
 
-decision(userChoice(), computerChoice());
+// decision(userChoice(), computerChoice());
+
+// Add playRound function
 
 
+
+function playGame() {
+    function playRound() {
+        decision(userChoice(), computerChoice());
+        console.log(`Player: ${humanScore}\nComputer: ${computerScore}`);
+    }
+    let gameRounds = 5;
+
+    for (let i = 1; i <= gameRounds; i++) {
+        playRound();
+    }  
+}
+
+playGame();
